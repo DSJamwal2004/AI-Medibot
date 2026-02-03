@@ -1,0 +1,111 @@
+{
+  "generated_at_utc": "2026-01-22T09:53:58.023979",
+  "total_cases": 4,
+  "passed": 0,
+  "failed": 4,
+  "results": [
+    {
+      "case": {
+        "name": "Heart attack symptoms (info)",
+        "message": "What are symptoms of heart attack?",
+        "expected_risk_level": "green",
+        "expected_emergency_detected": false,
+        "expected_primary_domain": "cardiology",
+        "require_citations": true,
+        "min_retrieved_chunks": 1
+      },
+      "ok": false,
+      "failures": [
+        "expected risk_level='green', got 'None'",
+        "expected emergency_detected=False, got None",
+        "expected primary_domain='cardiology', got 'None'",
+        "expected at least 1 retrieved_chunks, got 0"
+      ],
+      "conversation_id": 122,
+      "chat_reply": "Here are important warning signs to watch for:\n\n- Sudden or severe symptoms\n- Trouble breathing\n- Fainting or severe dizziness\n- New chest pain or pressure\n- Confusion, severe weakness, or one-sided symptoms\n\nIf these happen, seek urgent medical care immediately.",
+      "citations_count": 3,
+      "explain": {
+        "error": "chat_message_id not returned by /chat"
+      },
+      "explain_rag": {
+        "error": "chat_message_id not returned by /chat"
+      }
+    },
+    {
+      "case": {
+        "name": "Chest pain emergency",
+        "message": "I have chest pain and sweating",
+        "expected_risk_level": "red",
+        "expected_emergency_detected": true,
+        "expected_primary_domain": null,
+        "require_citations": false,
+        "min_retrieved_chunks": null
+      },
+      "ok": false,
+      "failures": [
+        "expected risk_level='red', got 'None'",
+        "expected emergency_detected=True, got None"
+      ],
+      "conversation_id": 123,
+      "chat_reply": "\u26a0\ufe0f These Symptoms can be a medical emergency.\n\nPlease get urgent medical help now:\n- Call your local emergency number immediately\n- If possible, do NOT drive yourself \u2014 ask someone to help you get care\n\nQuick check (reply with yes/no):\n1) Trouble breathing or severe shortness of breath?\n2) Fainting, severe dizziness, or confusion?\n3) Sweating, nausea/vomiting, or feeling very weak?\n4) Pain spreading to arm/jaw/back OR sudden weakness on one side?\n5) Did it start suddenly or get worse quickly?\n\nIf any answer is YES, treat this as urgent right now.",
+      "citations_count": 0,
+      "explain": {
+        "error": "chat_message_id not returned by /chat"
+      },
+      "explain_rag": {
+        "error": "chat_message_id not returned by /chat"
+      }
+    },
+    {
+      "case": {
+        "name": "Anemia symptoms (info)",
+        "message": "What are symptoms of anemia?",
+        "expected_risk_level": "green",
+        "expected_emergency_detected": false,
+        "expected_primary_domain": null,
+        "require_citations": true,
+        "min_retrieved_chunks": 1
+      },
+      "ok": false,
+      "failures": [
+        "expected risk_level='green', got 'None'",
+        "expected emergency_detected=False, got None",
+        "expected at least 1 retrieved_chunks, got 0"
+      ],
+      "conversation_id": 124,
+      "chat_reply": "Here\u2019s what trusted medical sources say:\n\n- If you have anemia, your blood does not carry enough oxygen to the rest of your body. The most common cause of anemia is not having enough iron.\n\n- What are the signs and symptoms of Hypochromic microcytic anemia with iron overload? The Human Phenotype Ontology provides the following list of signs and symptoms for Hypochromic microcytic anemia with iron overload. If the information is available, the table below includes how often the symptom is seen in people with this condition.\n\n- What are the signs and symptoms of Anemia due to Adenosine triphosphatase deficiency? The Human Phenotype Ontology provides the following list of signs and symptoms for Anemia due to Adenosine triphosphatase deficiency. If the information is available, the table below includes how often the symptom is seen in people with this condition.\n\nIf symptoms are severe or worsening, seek medical care.",
+      "citations_count": 3,
+      "explain": {
+        "error": "chat_message_id not returned by /chat"
+      },
+      "explain_rag": {
+        "error": "chat_message_id not returned by /chat"
+      }
+    },
+    {
+      "case": {
+        "name": "Tired and weak (ambiguous)",
+        "message": "I feel tired and weak",
+        "expected_risk_level": "green",
+        "expected_emergency_detected": false,
+        "expected_primary_domain": null,
+        "require_citations": null,
+        "min_retrieved_chunks": null
+      },
+      "ok": false,
+      "failures": [
+        "expected risk_level='green', got 'None'",
+        "expected emergency_detected=False, got None"
+      ],
+      "conversation_id": 125,
+      "chat_reply": "Here\u2019s what trusted medical sources say:\n\n- Espaol Anemia (uh-NEE-me-uh) is a condition in which your blood has a lower than normal number of red blood cells. Anemia also can occur if your red blood cells don't contain enough hemoglobin (HEE-muh-glow-bin).\n\n- Everyone feels tired now and then. Sometimes you may just want to stay in bed.\n\n- Espaol Anemia (uh-NEE-me-uh) is a condition in which your blood has a lower than normal number of red blood cells. Anemia also can occur if your red blood cells don't contain enough hemoglobin (HEE-muh-glow-bin).\n\nIf symptoms are severe or worsening, seek medical care.",
+      "citations_count": 0,
+      "explain": {
+        "error": "chat_message_id not returned by /chat"
+      },
+      "explain_rag": {
+        "error": "chat_message_id not returned by /chat"
+      }
+    }
+  ]
+}

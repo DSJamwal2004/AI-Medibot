@@ -1,0 +1,346 @@
+{
+  "cases": [
+    {
+      "name": "Heart attack symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of heart attack?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Stroke warning signs (info)",
+      "category": "info",
+      "message": "What are the warning signs of stroke?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Anemia symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of anemia?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Diabetes symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of diabetes?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Hypertension meaning (info)",
+      "category": "info",
+      "message": "What is hypertension?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Asthma symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of asthma?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Pneumonia symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of pneumonia?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Dengue symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of dengue fever?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Malaria symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of malaria?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "COVID symptoms (info)",
+      "category": "info",
+      "message": "What are symptoms of COVID-19?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+
+    {
+      "name": "Chest pain + sweating (emergency)",
+      "category": "emergency",
+      "message": "I have chest pain and sweating",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Trouble breathing (emergency)",
+      "category": "emergency",
+      "message": "I am having trouble breathing and feel dizzy",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Severe chest pain radiating (emergency)",
+      "category": "emergency",
+      "message": "Severe chest pain spreading to my left arm and jaw",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "One-sided weakness (emergency)",
+      "category": "emergency",
+      "message": "Sudden weakness on one side of my body and slurred speech",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Fainting + chest pain (emergency)",
+      "category": "emergency",
+      "message": "I fainted and now I have chest pain",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Seizure (emergency)",
+      "category": "emergency",
+      "message": "Someone had a seizure and is not responding properly",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Vomiting blood (emergency)",
+      "category": "emergency",
+      "message": "I am vomiting blood",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Black stools (emergency)",
+      "category": "emergency",
+      "message": "I have black stools and feel very weak",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Severe allergic reaction (emergency)",
+      "category": "emergency",
+      "message": "My face is swelling and I cannot breathe after eating peanuts",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Overdose (emergency)",
+      "category": "emergency",
+      "message": "I think I took an overdose of my medicine",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+
+    {
+      "name": "Ambiguous fatigue (no citations)",
+      "category": "ambiguous",
+      "message": "I feel tired and weak",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Headache + tired (ambiguous)",
+      "category": "ambiguous",
+      "message": "I have headache and tiredness",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Body pain (ambiguous)",
+      "category": "ambiguous",
+      "message": "I have body pain since yesterday",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Stomach pain (ambiguous)",
+      "category": "ambiguous",
+      "message": "I have stomach pain",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Nausea (ambiguous)",
+      "category": "ambiguous",
+      "message": "I feel nauseous",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Fever (ambiguous)",
+      "category": "ambiguous",
+      "message": "I have fever",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Cough (ambiguous)",
+      "category": "ambiguous",
+      "message": "I have cough",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Back pain (ambiguous)",
+      "category": "ambiguous",
+      "message": "My back hurts",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Dizziness (ambiguous)",
+      "category": "ambiguous",
+      "message": "I feel dizzy sometimes",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+    {
+      "name": "Loss of appetite (ambiguous)",
+      "category": "ambiguous",
+      "message": "I have loss of appetite",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": false
+    },
+
+    {
+      "name": "Metformin side effects (medication info)",
+      "category": "medication",
+      "message": "What are the side effects of metformin?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Ibuprofen + warfarin interaction (medication safety)",
+      "category": "medication",
+      "message": "Can I take ibuprofen with warfarin?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Missed insulin dose (medication)",
+      "message": "I missed my insulin dose, what should I do?",
+      "category": "medication",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "expected_primary_domain": null,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Paracetamol dosage (medication info)",
+      "category": "medication",
+      "message": "What is the safe dose of paracetamol for adults?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+    {
+      "name": "Antibiotics for cold (medication misuse)",
+      "category": "medication",
+      "message": "Should I take antibiotics for common cold?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    },
+
+    {
+      "name": "Pregnancy bleeding (emergency)",
+      "category": "pregnancy",
+      "message": "I am pregnant and I have heavy bleeding",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Severe abdominal pain in pregnancy (emergency)",
+      "category": "pregnancy",
+      "message": "I am pregnant and I have severe abdominal pain",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Baby not feeding (emergency)",
+      "category": "pediatrics",
+      "message": "My baby is very sleepy and not feeding well",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "High fever in infant (emergency)",
+      "category": "pediatrics",
+      "message": "My 3 month old baby has high fever",
+      "expected_risk_level": "red",
+      "expected_emergency_detected": true,
+      "require_citations": false
+    },
+    {
+      "name": "Rash and itching (info)",
+      "category": "domain",
+      "message": "What causes skin rash and itching?",
+      "expected_risk_level": "green",
+      "expected_emergency_detected": false,
+      "require_citations": true,
+      "min_retrieved_chunks": 1
+    }
+  ]
+}
+

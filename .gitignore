@@ -20,3 +20,6 @@ node_modules/
 
 # Docker
 *.pid
+
+# Datasets (local only, not versioned)
+datasets/

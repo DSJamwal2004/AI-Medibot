@@ -1,0 +1,341 @@
+{
+  "generated_at_utc": "2026-01-22T09:59:41.936554",
+  "total_cases": 4,
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "case": {
+        "name": "Heart attack symptoms (info)",
+        "message": "What are symptoms of heart attack?",
+        "expected_risk_level": "green",
+        "expected_emergency_detected": false,
+        "expected_primary_domain": "cardiology",
+        "require_citations": true,
+        "min_retrieved_chunks": 1
+      },
+      "ok": true,
+      "failures": [],
+      "conversation_id": 126,
+      "chat_reply": "Here are important warning signs to watch for:\n\n- Sudden or severe symptoms\n- Trouble breathing\n- Fainting or severe dizziness\n- New chest pain or pressure\n- Confusion, severe weakness, or one-sided symptoms\n\nIf these happen, seek urgent medical care immediately.",
+      "citations_count": 3,
+      "explain": {
+        "chat_message_id": 229,
+        "risk_level": "green",
+        "emergency_detected": false,
+        "risk_reason": "Informational query about a high-severity topic",
+        "risk_trigger": null,
+        "primary_domain": "cardiology",
+        "all_domains": [
+          {
+            "domain": "cardiology",
+            "score": 1,
+            "matched_keywords": [
+              "heart"
+            ]
+          },
+          {
+            "domain": "neurology",
+            "score": 1,
+            "matched_keywords": [
+              "ms "
+            ]
+          },
+          {
+            "domain": "ent",
+            "score": 1,
+            "matched_keywords": [
+              "ear"
+            ]
+          }
+        ],
+        "confidence_score": 0.5,
+        "model_name": "deterministic-safety+rag",
+        "created_at": "2026-01-22T09:59:37.595069Z"
+      },
+      "explain_rag": {
+        "chat_message_id": 230,
+        "role": "assistant",
+        "rag": {
+          "rag_confidence": 1.0,
+          "model_confidence": 0.75,
+          "final_confidence": 0.75,
+          "citations_returned": true,
+          "suppression_reason": null,
+          "retrieved_chunks": [
+            {
+              "chunk_id": 4326,
+              "chunk_number": 1,
+              "document_id": 4326,
+              "title": "What is (are) Heart Attack ?",
+              "source": "MedQuAD - 4_MPlus_Health_Topics",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "cardiology",
+              "authority_level": 1
+            },
+            {
+              "chunk_id": 10983,
+              "chunk_number": 2,
+              "document_id": 10983,
+              "title": "CDC Heart Attack Awareness",
+              "source": "CDC MMWR",
+              "source_file": "cdc_76147_DS1.pdf",
+              "page_number": 1,
+              "medical_domain": "cardiology",
+              "authority_level": 3
+            },
+            {
+              "chunk_id": 5486,
+              "chunk_number": 3,
+              "document_id": 5486,
+              "title": "CDC Heart Attack Awareness",
+              "source": "CDC MMWR",
+              "source_file": "cdc_76147_DS1.pdf",
+              "page_number": 1,
+              "medical_domain": "cardiology",
+              "authority_level": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "Chest pain emergency",
+        "message": "I have chest pain and sweating",
+        "expected_risk_level": "red",
+        "expected_emergency_detected": true,
+        "expected_primary_domain": null,
+        "require_citations": false,
+        "min_retrieved_chunks": null
+      },
+      "ok": true,
+      "failures": [],
+      "conversation_id": 127,
+      "chat_reply": "\u26a0\ufe0f These Symptoms can be a medical emergency.\n\nPlease get urgent medical help now:\n- Call your local emergency number immediately\n- If possible, do NOT drive yourself \u2014 ask someone to help you get care\n\nQuick check (reply with yes/no):\n1) Trouble breathing or severe shortness of breath?\n2) Fainting, severe dizziness, or confusion?\n3) Sweating, nausea/vomiting, or feeling very weak?\n4) Pain spreading to arm/jaw/back OR sudden weakness on one side?\n5) Did it start suddenly or get worse quickly?\n\nIf any answer is YES, treat this as urgent right now.",
+      "citations_count": 0,
+      "explain": {
+        "chat_message_id": 231,
+        "risk_level": "red",
+        "emergency_detected": true,
+        "risk_reason": "Emergency symptom detected",
+        "risk_trigger": "chest pain",
+        "primary_domain": "general",
+        "all_domains": [],
+        "confidence_score": 0.5,
+        "model_name": "deterministic-safety+rag",
+        "created_at": "2026-01-22T09:59:41.953380Z"
+      },
+      "explain_rag": {
+        "chat_message_id": 232,
+        "role": "assistant",
+        "rag": {
+          "rag_confidence": 1.0,
+          "model_confidence": 0.95,
+          "final_confidence": 0.95,
+          "citations_returned": false,
+          "suppression_reason": "emergency_override",
+          "retrieved_chunks": [
+            {
+              "chunk_id": 1,
+              "chunk_number": 1,
+              "document_id": 1,
+              "title": "Chest Pain Emergency",
+              "source": "CDC Emergency Guidelines",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "cardiology",
+              "authority_level": 3
+            },
+            {
+              "chunk_id": 5341,
+              "chunk_number": 2,
+              "document_id": 5341,
+              "title": "What is (are) Angina ?",
+              "source": "MedQuAD - 8_NHLBI_XML",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "cardiology",
+              "authority_level": 1
+            },
+            {
+              "chunk_id": 5398,
+              "chunk_number": 3,
+              "document_id": 5398,
+              "title": "What is (are) Pericarditis ?",
+              "source": "MedQuAD - 8_NHLBI_XML",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "cardiology",
+              "authority_level": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "Anemia symptoms (info)",
+        "message": "What are symptoms of anemia?",
+        "expected_risk_level": "green",
+        "expected_emergency_detected": false,
+        "expected_primary_domain": null,
+        "require_citations": true,
+        "min_retrieved_chunks": 1
+      },
+      "ok": true,
+      "failures": [],
+      "conversation_id": 128,
+      "chat_reply": "Here\u2019s what trusted medical sources say:\n\n- If you have anemia, your blood does not carry enough oxygen to the rest of your body. The most common cause of anemia is not having enough iron.\n\n- What are the signs and symptoms of Hypochromic microcytic anemia with iron overload? The Human Phenotype Ontology provides the following list of signs and symptoms for Hypochromic microcytic anemia with iron overload. If the information is available, the table below includes how often the symptom is seen in people with this condition.\n\n- What are the signs and symptoms of Anemia due to Adenosine triphosphatase deficiency? The Human Phenotype Ontology provides the following list of signs and symptoms for Anemia due to Adenosine triphosphatase deficiency. If the information is available, the table below includes how often the symptom is seen in people with this condition.\n\nIf symptoms are severe or worsening, seek medical care.",
+      "citations_count": 3,
+      "explain": {
+        "chat_message_id": 233,
+        "risk_level": "green",
+        "emergency_detected": false,
+        "risk_reason": "Informational medical query",
+        "risk_trigger": null,
+        "primary_domain": "neurology",
+        "all_domains": [
+          {
+            "domain": "neurology",
+            "score": 1,
+            "matched_keywords": [
+              "ms "
+            ]
+          },
+          {
+            "domain": "hematology",
+            "score": 1,
+            "matched_keywords": [
+              "anemia"
+            ]
+          }
+        ],
+        "confidence_score": 0.5,
+        "model_name": "deterministic-safety+rag",
+        "created_at": "2026-01-22T09:59:42.207982Z"
+      },
+      "explain_rag": {
+        "chat_message_id": 234,
+        "role": "assistant",
+        "rag": {
+          "rag_confidence": 1.0,
+          "model_confidence": 0.75,
+          "final_confidence": 0.75,
+          "citations_returned": true,
+          "suppression_reason": null,
+          "retrieved_chunks": [
+            {
+              "chunk_id": 3918,
+              "chunk_number": 1,
+              "document_id": 3918,
+              "title": "What is (are) Anemia ?",
+              "source": "MedQuAD - 4_MPlus_Health_Topics",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "neurology",
+              "authority_level": 1
+            },
+            {
+              "chunk_id": 1291,
+              "chunk_number": 2,
+              "document_id": 1291,
+              "title": "What are the symptoms of Hypochromic microcytic anemia with iron overload ?",
+              "source": "MedQuAD - 2_GARD",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "neurology",
+              "authority_level": 1
+            },
+            {
+              "chunk_id": 238,
+              "chunk_number": 3,
+              "document_id": 238,
+              "title": "What are the symptoms of Anemia due to Adenosine triphosphatase deficiency ?",
+              "source": "MedQuAD - 2_GARD",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "neurology",
+              "authority_level": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": {
+        "name": "Tired and weak (ambiguous)",
+        "message": "I feel tired and weak",
+        "expected_risk_level": "green",
+        "expected_emergency_detected": false,
+        "expected_primary_domain": null,
+        "require_citations": null,
+        "min_retrieved_chunks": null
+      },
+      "ok": true,
+      "failures": [],
+      "conversation_id": 129,
+      "chat_reply": "Here\u2019s what trusted medical sources say:\n\n- Espaol Anemia (uh-NEE-me-uh) is a condition in which your blood has a lower than normal number of red blood cells. Anemia also can occur if your red blood cells don't contain enough hemoglobin (HEE-muh-glow-bin).\n\n- Everyone feels tired now and then. Sometimes you may just want to stay in bed.\n\n- Espaol Anemia (uh-NEE-me-uh) is a condition in which your blood has a lower than normal number of red blood cells. Anemia also can occur if your red blood cells don't contain enough hemoglobin (HEE-muh-glow-bin).\n\nIf symptoms are severe or worsening, seek medical care.",
+      "citations_count": 0,
+      "explain": {
+        "chat_message_id": 235,
+        "risk_level": "green",
+        "emergency_detected": false,
+        "risk_reason": "No emergency indicators detected",
+        "risk_trigger": null,
+        "primary_domain": "general",
+        "all_domains": [],
+        "confidence_score": 0.5,
+        "model_name": "deterministic-safety+rag",
+        "created_at": "2026-01-22T09:59:42.545026Z"
+      },
+      "explain_rag": {
+        "chat_message_id": 236,
+        "role": "assistant",
+        "rag": {
+          "rag_confidence": 0.9248739964962005,
+          "model_confidence": 0.75,
+          "final_confidence": 0.75,
+          "citations_returned": false,
+          "suppression_reason": "ambiguous_symptoms",
+          "retrieved_chunks": [
+            {
+              "chunk_id": 10837,
+              "chunk_number": 1,
+              "document_id": 10837,
+              "title": "What is (are) Anemia ?",
+              "source": "MedQuAD - 8_NHLBI_XML",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": null,
+              "authority_level": null
+            },
+            {
+              "chunk_id": 9737,
+              "chunk_number": 2,
+              "document_id": 9737,
+              "title": "What is (are) Fatigue ?",
+              "source": "MedQuAD - 4_MPlus_Health_Topics",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": null,
+              "authority_level": null
+            },
+            {
+              "chunk_id": 5339,
+              "chunk_number": 3,
+              "document_id": 5339,
+              "title": "What is (are) Anemia ?",
+              "source": "MedQuAD - 8_NHLBI_XML",
+              "source_file": null,
+              "page_number": null,
+              "medical_domain": "cardiology",
+              "authority_level": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
