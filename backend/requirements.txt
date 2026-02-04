@@ -11,5 +11,7 @@ psycopg2-binary
 alembic
 pydantic[email]
 email-validator
-
+pgvector
+sentence-transformers
+gunicorn
 
