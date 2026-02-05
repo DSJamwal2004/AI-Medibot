@@ -162,32 +162,48 @@ async function apiFetch<T>(
 }
 
 export async function register(email: string, password: string) {
-  return apiFetch<{ id: number; email: string }>(`/api/v1/auth/register`, {
-    method: "POST",
-    body: JSON.stringify({ email, password }),
-  });
+  const res = await fetch(
+    `${API_BASE}/api/v1/auth/register`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    }
+  );
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => null);
+    throw new Error(err?.detail || "Registration failed");
+  }
+
+  return res.json();
 }
 
 export async function login(email: string, password: string) {
-  const res = await fetch(`${API_BASE}/api/v1/auth/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({
-      username: email,
-      password: password,
-    }),
-  });
+  const params = new URLSearchParams();
+  params.append("username", email); // OAuth2 requires "username"
+  params.append("password", password);
+
+  const res = await fetch(
+    `${API_BASE}/api/v1/auth/login`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: params.toString(),
+    }
+  );
 
   if (!res.ok) {
-    const msg = await readErrorMessage(res);
-    throw new Error(msg);
+    const err = await res.json().catch(() => null);
+    throw new Error(err?.detail || "Invalid email or password");
   }
 
-  const data = (await res.json()) as TokenResponse;
-
-  setToken(data.access_token);
+  const data = await res.json();
+  localStorage.setItem("access_token", data.access_token);
   return data;
 }
 
