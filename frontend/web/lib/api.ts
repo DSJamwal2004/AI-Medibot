@@ -1,7 +1,7 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 if (!API_BASE) {
-  throw new Error("NEXT_PUBLIC_API_BASE_URL is not set in .env.local");
+  console.error("NEXT_PUBLIC_API_BASE_URL is not set");
 }
 
 export type TokenResponse = {
@@ -183,7 +183,7 @@ export async function register(email: string, password: string) {
 
 export async function login(email: string, password: string) {
   const params = new URLSearchParams();
-  params.append("username", email); // OAuth2 requires "username"
+  params.append("username", email);
   params.append("password", password);
 
   const res = await fetch(
@@ -203,7 +203,7 @@ export async function login(email: string, password: string) {
   }
 
   const data = await res.json();
-  localStorage.setItem("access_token", data.access_token);
+  setToken(data.access_token); // ✅ FIX
   return data;
 }
 
