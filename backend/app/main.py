@@ -23,9 +23,6 @@ def on_startup():
     # Initialize database tables
     init_db()
 
-    # Create a shared DB session for integration tests
-    app.state.db = SessionLocal()
-
 
 @app.on_event("shutdown")
 def on_shutdown():
