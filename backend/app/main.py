@@ -18,12 +18,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.on_event("startup")
-def on_startup():
-    # Initialize database tables
-    init_db()
-
-
 @app.on_event("shutdown")
 def on_shutdown():
     # Close DB session cleanly
