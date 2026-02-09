@@ -13,7 +13,6 @@ from app.models.medical_interaction import MedicalInteraction
 from app.services.medical_safety import assess_medical_risk, RiskLevel, SafetySignal
 from app.services.symptom_router import infer_medical_domain, infer_medical_domains
 from app.services.medical_interaction_service import save_medical_interaction
-from app.services.rag_service import retrieve_context
 from app.services.escalation_rules import should_escalate
 
 from app.services.conversation_state import (
@@ -23,6 +22,10 @@ from app.services.conversation_state import (
 )
 
 from app.services.clarification import generate_clarification_question
+
+def retrieve_context_safe(**kwargs):
+    from app.services.rag_service import retrieve_context
+    return retrieve_context(**kwargs)
 
 
 def get_collected_slots_from_conversation(
@@ -474,7 +477,7 @@ def process_chat_message(
                     rag_query = f"{h['content']}\n\nFollow-up question: {msg_text}"
                     break
 
-        rag = retrieve_context(
+        rag = retrieve_context_safe(
             query=rag_query,
             medical_domain=None if effective_domain in (None, "general") else effective_domain,
             is_emergency=False,

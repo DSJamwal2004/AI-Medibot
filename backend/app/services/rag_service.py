@@ -7,8 +7,6 @@ from sqlalchemy.orm import Session
 from sqlalchemy import and_, or_
 
 from app.models.medical_document import MedicalDocument
-from sentence_transformers import SentenceTransformer
-
 
 # ------------------------------------------------------------------
 # BACKWARD-COMPATIBLE RETURN OBJECT
@@ -267,13 +265,14 @@ def _authority_score(source: Optional[str], explicit_level: Optional[int]) -> in
 # EMBEDDING (LOCAL / FREE)
 # ------------------------------------------------------------------
 
-_embedding_model: Optional[SentenceTransformer] = None
+_embedding_model = None
 EMBEDDING_DIM = 384
 
 
-def _get_embedding_model() -> SentenceTransformer:
+def _get_embedding_model():
     global _embedding_model
     if _embedding_model is None:
+        from sentence_transformers import SentenceTransformer
         _embedding_model = SentenceTransformer(
             "sentence-transformers/all-MiniLM-L6-v2",
             device="cpu"
