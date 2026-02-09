@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.services.ai_service import generate_ai_reply
 
 from datetime import datetime
 
@@ -13,7 +15,6 @@ from app.services.symptom_router import infer_medical_domain, infer_medical_doma
 from app.services.medical_interaction_service import save_medical_interaction
 from app.services.rag_service import retrieve_context
 from app.services.escalation_rules import should_escalate
-from app.services.ai_service import generate_ai_reply
 
 from app.services.conversation_state import (
     infer_conversation_phase,
@@ -269,6 +270,8 @@ def process_chat_message(
     get_citation_suppression_reason,
     get_last_domain_from_db,
 ) -> Dict[str, Any]:
+    
+    from app.services.ai_service import generate_ai_reply
 
     # 1️⃣ conversation
     conversation = get_or_create_conversation(db, user_id, conversation_id)
