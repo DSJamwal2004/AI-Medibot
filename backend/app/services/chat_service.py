@@ -4,6 +4,7 @@ if TYPE_CHECKING:
     from app.services.ai_service import generate_ai_reply
 
 from datetime import datetime
+from app.core.config import settings
 
 from app.models.conversation import Conversation
 from app.models.chat_message import ChatMessage
@@ -477,21 +478,25 @@ def process_chat_message(
                     rag_query = f"{h['content']}\n\nFollow-up question: {msg_text}"
                     break
 
-        rag = retrieve_context_safe(
-            query=rag_query,
-            medical_domain=None if effective_domain in (None, "general") else effective_domain,
-            is_emergency=False,
-            min_authority_level=None,
-            db=db,
-        )
+        rag = None
+        rag_confidence = 0.0
 
-        rag_confidence = rag.confidence
+        if settings.ENABLE_RAG:
+            rag = retrieve_context_safe(
+                query=rag_query,
+                medical_domain=None if effective_domain in (None, "general") else effective_domain,
+                is_emergency=False,
+                min_authority_level=None,
+                db=db,
+            )
+            rag_confidence = rag.confidence
 
-        for c in rag.chunks or []:
-            if c.get("content"):
-                contexts.append(c["content"])
-            if c.get("citation"):
-                citations.append(c["citation"])
+        if rag:
+            for c in rag.chunks or []:
+                if c.get("content"):
+                    contexts.append(c["content"])
+                if c.get("citation"):
+                    citations.append(c["citation"])
 
         if rag_confidence is not None and rag_confidence < 0.35:
             contexts = []
@@ -499,7 +504,7 @@ def process_chat_message(
             suppression_reason = "low_rag_confidence"
         else:
             suppression_reason = get_citation_suppression_reason(
-                msg_text, analysis, rag.chunks or []
+                msg_text, analysis, rag.chunks if rag else []
             )
             if suppression_reason:
                 citations = []
