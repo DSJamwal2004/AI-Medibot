@@ -13,9 +13,13 @@ pydantic[email]
 email-validator
 pgvector
 gunicorn
+
+# ML (CPU-only, Python 3.13 compatible)
 sentence-transformers==2.2.2
 transformers<5
-torch==2.0.1+cpu
+torch==2.10.0+cpu
+
 --extra-index-url https://download.pytorch.org/whl/cpu
+
 
 
