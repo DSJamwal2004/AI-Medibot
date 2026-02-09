@@ -274,7 +274,10 @@ EMBEDDING_DIM = 384
 def _get_embedding_model() -> SentenceTransformer:
     global _embedding_model
     if _embedding_model is None:
-        _embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+        _embedding_model = SentenceTransformer(
+            "sentence-transformers/all-MiniLM-L6-v2",
+            device="cpu"
+        )
     return _embedding_model
 
 
