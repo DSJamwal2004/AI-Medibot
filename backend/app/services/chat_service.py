@@ -24,6 +24,8 @@ from app.services.conversation_state import (
 
 from app.services.clarification import generate_clarification_question
 
+print("🔥 LOADED chat_service.py FROM app/services")
+
 def retrieve_context_safe(**kwargs):
     from app.services.rag_service import retrieve_context
     return retrieve_context(**kwargs)
