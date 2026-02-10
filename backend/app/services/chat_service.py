@@ -327,6 +327,12 @@ def process_chat_message(
         is_vague_followup=is_vague_followup,
         has_escalation=False,
     )
+
+    # ✅ Informational queries should NEVER trigger clarification
+    if is_info:
+        phase = "informational"
+        missing = []
+
     print(
         "CHAT:",
         message,
@@ -358,8 +364,9 @@ def process_chat_message(
     should_clarify = (
         phase == "info_gathering"
         and not analysis["emergency_detected"]
-        and missing
+        and bool(missing)
         and not is_info
+        and not clarification_already_asked(db, conversation.id)
     )
 
     if should_clarify:
@@ -487,15 +494,15 @@ def process_chat_message(
         rag = None
         rag_confidence = 0.0
 
-        if settings.ENABLE_RAG:
+        if getattr(settings, "ENABLE_RAG", False):
             rag = retrieve_context_safe(
                 query=rag_query,
-                medical_domain=None,  # let vector + keyword logic decide
+                medical_domain=None,
                 is_emergency=False,
                 min_authority_level=None,
                 db=db,
             )
-            rag_confidence = rag.confidence
+            rag_confidence = rag.confidence if rag else 0.0
 
         if rag is not None:
             for c in rag.chunks or []:

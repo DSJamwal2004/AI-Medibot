@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     # RAG / Vector Store
     # --------------------
     VECTOR_BACKEND: Literal["memory", "pgvector"] = "pgvector"
-    ENABLE_RAG: bool = True
+    ENABLE_RAG: bool = False
 
     model_config = SettingsConfigDict(
         env_file=".env",
