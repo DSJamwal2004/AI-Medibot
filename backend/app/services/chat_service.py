@@ -357,6 +357,7 @@ def process_chat_message(
         phase == "info_gathering"
         and not analysis["emergency_detected"]
         and missing
+        and not is_info
     )
 
     if should_clarify:
