@@ -293,7 +293,6 @@ def process_chat_message(
 
     # 3️⃣ deterministic analysis
     analysis = analyze_user_message(message)
-    print("CHAT:", message, "| phase:", phase, "| slots missing:", missing)
 
     # ---------- intent detection ----------
     is_info = is_informational_message(message)
@@ -325,6 +324,16 @@ def process_chat_message(
         is_goodbye=is_goodbye,
         is_vague_followup=is_vague_followup,
         has_escalation=False,
+    )
+    print(
+        "CHAT:",
+        message,
+        "| phase:",
+        phase,
+        "| slots missing:",
+        missing,
+        "| risk:",
+        analysis["risk_level"],
     )
 
     save_medical_interaction(
