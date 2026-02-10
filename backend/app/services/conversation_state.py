@@ -40,17 +40,25 @@ def extract_slots(message: str) -> dict:
 
     slots = {}
 
+    # age
     if re.search(r"\b(years?|yo|yrs?)\b", msg):
         slots["age"] = "mentioned"
 
+    # duration
     if any(w in msg for w in ["days", "weeks", "months", "hours"]):
         slots["duration"] = "mentioned"
 
+    # severity
     if any(w in msg for w in ["mild", "moderate", "severe", "worst"]):
         slots["severity"] = "mentioned"
 
+    # progression
     if any(w in msg for w in ["worse", "worsening", "better", "improving"]):
         slots["progression"] = "mentioned"
+
+    # 🔑 SYMPTOM (THIS FIXES THE LOOP)
+    if len(msg.split()) >= 2:
+        slots["symptom"] = "mentioned"
 
     return slots
 

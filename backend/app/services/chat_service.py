@@ -293,6 +293,7 @@ def process_chat_message(
 
     # 3️⃣ deterministic analysis
     analysis = analyze_user_message(message)
+    print("CHAT:", message, "| phase:", phase, "| slots missing:", missing)
 
     # ---------- intent detection ----------
     is_info = is_informational_message(message)
@@ -326,11 +327,6 @@ def process_chat_message(
         has_escalation=False,
     )
 
-    # Hard lock: once clarification happened, never re-enter it
-    if clarification_already_asked(db, conversation.id):
-        phase = "answering"
-
-
     save_medical_interaction(
         db=db,
         user_id=user_id,
@@ -349,11 +345,9 @@ def process_chat_message(
     # ---------- clarification gate ----------
 
     should_clarify = (
-        phase in ("info_gathering", "clarification")
+        phase == "info_gathering"
         and not analysis["emergency_detected"]
-        and not skip_clarification
         and missing
-        and not clarification_already_asked(db, conversation.id)
     )
 
     if should_clarify:
@@ -484,14 +478,14 @@ def process_chat_message(
         if settings.ENABLE_RAG:
             rag = retrieve_context_safe(
                 query=rag_query,
-                medical_domain=None if effective_domain in (None, "general") else effective_domain,
+                medical_domain=None,  # let vector + keyword logic decide
                 is_emergency=False,
                 min_authority_level=None,
                 db=db,
             )
             rag_confidence = rag.confidence
 
-        if rag:
+        if rag is not None:
             for c in rag.chunks or []:
                 if c.get("content"):
                     contexts.append(c["content"])

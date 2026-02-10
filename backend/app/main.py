@@ -1,10 +1,21 @@
+import logging
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.v1 import auth, chat, health, conversations, escalations
-from app.db.init_db import init_db
-from app.db.session import SessionLocal
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    handlers=[logging.StreamHandler(sys.stdout)],
+)
+
+logger = logging.getLogger("medibot")
 
 app = FastAPI(title="AI MediBot")
+
+logger.info("🚀 AI MediBot starting up")
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,17 +31,16 @@ app.add_middleware(
 
 @app.on_event("shutdown")
 def on_shutdown():
-    # Close DB session cleanly
+    logger.info("🛑 AI MediBot shutting down")
     db = getattr(app.state, "db", None)
     if db:
         db.close()
 
-
-# Routers
 app.include_router(auth.router, prefix="/api/v1", tags=["Auth"])
 app.include_router(chat.router, prefix="/api/v1", tags=["Chat"])
 app.include_router(health.router, prefix="/api/v1", tags=["Health"])
 app.include_router(conversations.router, prefix="/api/v1", tags=["Conversations"])
 app.include_router(escalations.router, prefix="/api/v1", tags=["Escalations"])
+
 
 
