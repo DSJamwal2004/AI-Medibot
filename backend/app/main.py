@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1 import auth, chat, health, conversations, escalations
+from app.services.rag_service import _get_embedding_model
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -16,6 +18,12 @@ logger = logging.getLogger("medibot")
 app = FastAPI(title="AI MediBot")
 
 logger.info("🚀 AI MediBot starting up")
+
+@app.on_event("startup")
+def preload_embedding_model():
+    logger.info("🔌 Preloading embedding model at startup")
+    _get_embedding_model()
+    logger.info("✅ Embedding model loaded")
 
 app.add_middleware(
     CORSMiddleware,
