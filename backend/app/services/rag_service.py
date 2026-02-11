@@ -262,27 +262,32 @@ def _authority_score(source: Optional[str], explicit_level: Optional[int]) -> in
 
 
 # ------------------------------------------------------------------
-# EMBEDDING (LOCAL / FREE)
+# EMBEDDING (LOCAL / FREE) — SAFE FOR RENDER
 # ------------------------------------------------------------------
 
+from threading import Lock
+
 _embedding_model = None
+_embedding_lock = Lock()
 EMBEDDING_DIM = 384
 
 
 def _get_embedding_model():
     global _embedding_model
     if _embedding_model is None:
-        from sentence_transformers import SentenceTransformer
-        _embedding_model = SentenceTransformer(
-            "sentence-transformers/all-MiniLM-L6-v2",
-            device="cpu"
-        )
+        with _embedding_lock:
+            if _embedding_model is None:
+                from sentence_transformers import SentenceTransformer
+                _embedding_model = SentenceTransformer(
+                    "sentence-transformers/all-MiniLM-L6-v2",
+                    device="cpu"
+                )
     return _embedding_model
 
 
 def _generate_embedding(text: str) -> list[float]:
     model = _get_embedding_model()
-    return model.encode(text).tolist()
+    return model.encode(text, normalize_embeddings=True).tolist()
 
 
 # ------------------------------------------------------------------
