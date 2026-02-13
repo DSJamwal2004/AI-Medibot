@@ -387,6 +387,10 @@ def retrieve_context(
 
     query_embedding = _generate_embedding(query)
 
+    # 🔒 HARD GUARD: if embedding failed, return empty RAG safely
+    if not query_embedding:
+        return RAGResult([], 0.0)
+
     if settings.VECTOR_BACKEND != "pgvector":
         raise RuntimeError("Only pgvector backend supported for explainable RAG")
 

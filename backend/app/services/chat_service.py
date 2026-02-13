@@ -23,6 +23,9 @@ from app.services.conversation_state import (
 )
 
 from app.services.clarification import generate_clarification_question
+import logging
+
+logger = logging.getLogger("medibot")
 
 print("🔥 LOADED chat_service.py FROM app/services")
 
@@ -495,14 +498,20 @@ def process_chat_message(
         rag_confidence = 0.0
 
         if getattr(settings, "ENABLE_RAG", False):
-            rag = retrieve_context_safe(
-                query=rag_query,
-                medical_domain=None,
-                is_emergency=False,
-                min_authority_level=None,
-                db=db,
-            )
-            rag_confidence = rag.confidence if rag else 0.0
+            try:
+                rag = retrieve_context_safe(
+                    query=rag_query,
+                    medical_domain=None,
+                    is_emergency=False,
+                    min_authority_level=None,
+                    db=db,
+                )
+                rag_confidence = rag.confidence if rag else 0.0
+            except Exception as e:
+                logger.warning(f"RAG failed, continuing without context: {e}")
+                rag = None
+                rag_confidence = 0.0
+
 
         if rag is not None:
             for c in rag.chunks or []:

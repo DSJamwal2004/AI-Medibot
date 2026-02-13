@@ -1,6 +1,6 @@
 import logging
 import sys
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1 import auth, chat, health, conversations, escalations
@@ -31,13 +31,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def root():
-    return {"status": "ok"}
+    return Response(status_code=200)
 
-@app.get("/readyz")
+@app.api_route("/readyz", methods=["GET", "HEAD"])
 def ready():
-    return {"ready": True}
+    return Response(status_code=200)
 
 @app.on_event("shutdown")
 def on_shutdown():
