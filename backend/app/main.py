@@ -19,12 +19,6 @@ app = FastAPI(title="AI MediBot")
 
 logger.info("🚀 AI MediBot starting up")
 
-@app.on_event("startup")
-def preload_embedding_model():
-    logger.info("🔌 Preloading embedding model at startup")
-    _get_embedding_model()
-    logger.info("✅ Embedding model loaded")
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[

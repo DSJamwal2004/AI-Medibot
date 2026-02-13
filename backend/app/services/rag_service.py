@@ -286,8 +286,16 @@ def _get_embedding_model():
 
 
 def _generate_embedding(text: str) -> list[float]:
-    model = _get_embedding_model()
-    return model.encode(text, normalize_embeddings=True).tolist()
+    try:
+        model = _get_embedding_model()
+        if model is None:
+            raise RuntimeError("Embedding model unavailable")
+        return model.encode(text, normalize_embeddings=True).tolist()
+    except Exception as e:
+        # IMPORTANT: fail gracefully
+        from app.utils.logger import logger  # or logging.getLogger("medibot")
+        logger.error(f"Embedding generation failed: {e}")
+        return []
 
 
 # ------------------------------------------------------------------
